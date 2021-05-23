@@ -22,10 +22,10 @@ function index() {
           </span>
         </button>
         <a
-          href="index.html"
+          href="/"
           className="inline-block text-2xl font-bold tracking-wider uppercase text-primary-dark dark:text-light"
         >
-          K-WD
+          Coin-Control
         </a>
         <button className="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring">
           <span className="sr-only">Open sub manu</span>

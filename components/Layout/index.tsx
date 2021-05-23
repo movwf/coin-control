@@ -14,5 +14,5 @@ function index({ children }) {
     </div>
   );
 }
-
+  
 export default index;
