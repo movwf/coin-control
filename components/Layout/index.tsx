@@ -1,4 +1,5 @@
-import Sidebar from './Sidebar';
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
 
 function index({ children }) {
   return (
@@ -461,6 +462,7 @@ function index({ children }) {
           </div>
         </header>
         <main>{children}</main>
+        <Footer />
       </div>
     </div>
   );

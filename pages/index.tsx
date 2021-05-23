@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
 
 export default function Home() {
   return (
@@ -224,19 +224,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <footer className="flex items-center justify-between p-4 bg-white border-t dark:bg-darker dark:border-primary-darker">
-        <div>K-WD &copy; 2021</div>
-        <div>
-          Made by
-          <a
-            href="https://github.com/Kamona-WD"
-            target="_blank"
-            className="text-blue-500 hover:underline"
-          >
-            Ahmed Kamel
-          </a>
-        </div>
-      </footer>
     </Layout>
   );
 }
