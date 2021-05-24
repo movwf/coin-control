@@ -16,11 +16,12 @@ function index({ children }) {
       <Sidebar />
       <div className="flex-1 h-full overflow-x-hidden overflow-y-auto">
         <Topbar />
-        <main className="bg-light dark:bg-dark dark:text-light">
+        <main className="bg-light h-full dark:bg-dark dark:text-light">
           {children}
         </main>
-        <Footer />
+
         <Drawer {...{ children: <SettingsPanel />, position: "left" }} />
+        <Footer />
       </div>
     </div>
   );

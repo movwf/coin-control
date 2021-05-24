@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
 import CardWithHeadingAndBadge from "../components/UI/CardWithHeadingAndBadge";
-import CardWithHeading from "../components/UI/CardWithHeading";
 import StatusCard from "../components/UI/StatusCard";
 import Table from "../components/UI/Table";
 
@@ -31,40 +30,8 @@ export default function Home() {
             icon="users"
             format="normal"
           />
-          <StatusCard
-            title="Orders"
-            values={[30000, 43300, 45021]}
-            icon="trending-up"
-            format="normal"
-          />
-          <StatusCard
-            title="Tickets"
-            values={[2310, 19950, 20516]}
-            icon="ticket"
-            format="normal"
-          />
         </div>
 
-        <div className="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-4">
-          <div className="col-span-2">
-            <CardWithHeadingAndBadge
-              title="Bar Chart"
-              badgeLabel="Last Year"
-              badgeInnerText="123"
-            >
-              <span>Test</span>
-            </CardWithHeadingAndBadge>
-          </div>
-          <div className="col-span-2">
-            <CardWithHeadingAndBadge
-              title="Bar Chart"
-              badgeLabel="Last Year"
-              badgeInnerText="123"
-            >
-              <span>Test</span>
-            </CardWithHeadingAndBadge>
-          </div>
-        </div>
         <div className="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
           <div className="col-span-3">
             <Table />
