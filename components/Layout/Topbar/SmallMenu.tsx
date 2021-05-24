@@ -3,7 +3,6 @@ import { HomeIcon, ChevronDownIcon } from "@heroicons/react/outline";
 type Toggle = { menu: boolean };
 
 function SmallMenu(toggle: Toggle) {
-  console.log(toggle);
   return (
     <div
       className="border-b md:hidden dark:border-primary-darker"

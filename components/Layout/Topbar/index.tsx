@@ -143,9 +143,14 @@ function index() {
                 aria-hidden="true"
                 className="relative focus:outline-none"
               >
-                <div className="inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm">
-                  <MoonIcon className="w-4 h-4" />
-                  <StarIcon className="w-4 h-4" />
+                <div
+                  className={`inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm ${
+                    true
+                      ? "translate-x-0 -translate-y-px  bg-white text-primary-dark"
+                      : "translate-x-6 text-primary-100 bg-primary-darker"
+                  }`}
+                >
+                  <MoonIcon className="w-7 h-7" />
                 </div>
               </button>
               {/* Notification button */}
