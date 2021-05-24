@@ -1,6 +1,9 @@
 import { useState } from "react";
+import Modal from "../Modal";
 import TableRow from "./TableRow";
-import { ChevronDownIcon } from "@heroicons/react/outline";
+import Backdrop from "../../Layout/Drawer/Backdrop";
+import { ChevronDownIcon, PlusIcon } from "@heroicons/react/outline";
+
 const CoinData = [
   {
     name: "BTC",
@@ -16,6 +19,7 @@ function index() {
   const [menuOpen, setMenuOpen] = useState({
     "market-1": false,
     "market-2": false,
+    "add-coin": true,
   });
   return (
     <div className="h-full bg-white rounded-md dark:bg-darker">
@@ -133,9 +137,31 @@ function index() {
           </tr>
         </thead>
         <tbody className="text-primary-dark dark:text-primary-light ">
-          <TableRow {...CoinData[0]} />
+          {CoinData?.map((coin) => (
+            <TableRow {...coin} />
+          ))}
         </tbody>
       </table>
+      <div className="m-4 h-15 w-full flex flex-row justify-center items-center">
+        <div
+          className="transition duration-500 ease-in-out bg-primary-dark hover:bg-primary-darker h-10 w-40 text-primary-darker dark:text-light rounded-full flex flex-row justify-center items-center flex-nowrap"
+          onClick={() => {
+            setMenuOpen({
+              ...menuOpen,
+              "add-coin": !menuOpen["add-coin"],
+            });
+          }}
+        >
+          <span className="col mr-2">
+            <PlusIcon className="w-6 h-6" />
+          </span>
+          <span className="col"> Add New Coin</span>
+        </div>
+      </div>
+      <Backdrop {...{ toggle: menuOpen["add-coin"] }} />
+      {menuOpen["add-coin"] && (
+        <Modal toggle={{ state: menuOpen, action: setMenuOpen }} />
+      )}
     </div>
   );
 }

@@ -9,7 +9,7 @@ function Backdrop({ toggle }) {
       // x-transition:leave-end="opacity-0"
       hidden={!toggle}
       //@click="isSettingsPanelOpen = false"
-      className="fixed inset-0 z-10 bg-black bg-opacity-40"
+      className="transition duration-500 ease-in-out fixed inset-0 z-10 bg-black bg-opacity-40"
       //style="opacity: 0.5"
       aria-hidden="true"
     ></div>
