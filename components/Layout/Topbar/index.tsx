@@ -95,7 +95,10 @@ function index() {
               }}
             >
               <span className="sr-only">User menu</span>
-              <img className="w-10 h-10 rounded-full" src="#" alt="Test" />
+              <div className="w-8 h-8 rounded-full border-2 bg-primary-light">
+                &nbsp;
+              </div>
+              {/* <img className="w-10 h-10 rounded-full" src="#" alt="Test" /> */}
             </button>
             {/* User dropdown menu */}
             <div
@@ -182,7 +185,10 @@ function index() {
                   }}
                 >
                   <span className="sr-only">User Menu</span>
-                  <img className="w-10 h-10 rounded-full" src="#" alt="Test" />
+                  <div className="w-8 h-8 rounded-full bg-primary-light">
+                    &nbsp;
+                  </div>
+                  {/* <img className="w-10 h-10 rounded-full" src="#" alt="Test" /> */}
                 </button>
                 {/* User dropdown menu */}
                 <div
