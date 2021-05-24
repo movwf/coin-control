@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import CardWithHeadingAndBadge from "../components/UI/CardWithHeadingAndBadge";
 import CardWithHeading from "../components/UI/CardWithHeading";
 import StatusCard from "../components/UI/StatusCard";
+import Table from "../components/UI/Table";
 
 export default function Home() {
   return (
@@ -64,12 +65,9 @@ export default function Home() {
             </CardWithHeadingAndBadge>
           </div>
         </div>
-
         <div className="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
-          <div className="col-span-1 h-96">
-            <CardWithHeading title="Active Users Right Now">
-              <span>Test</span>
-            </CardWithHeading>
+          <div className="col-span-3">
+            <Table />
           </div>
         </div>
       </div>
