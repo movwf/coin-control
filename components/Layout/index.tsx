@@ -1,6 +1,8 @@
 import Topbar from "./Topbar";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
+import Drawer from "./Drawer";
+import SettingsPanel from "../SettingsPanel";
 
 function index({ children }) {
   // Change with theme dispatch
@@ -18,6 +20,7 @@ function index({ children }) {
           {children}
         </main>
         <Footer />
+        <Drawer {...{ children: <SettingsPanel />, position: "left" }} />
       </div>
     </div>
   );

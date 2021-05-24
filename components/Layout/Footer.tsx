@@ -2,7 +2,7 @@ import { memo } from "react";
 
 function Footer() {
   return (
-    <footer className="flex items-center justify-between p-4 bg-white border-t dark:bg-darker dark:border-primary-darker">
+    <footer className="flex items-center justify-between p-4 bg-white border-t dark:bg-darker dark:border-primary-darker dark:text-light">
       <div>Coin-Control &copy; 2021</div>
       <div className="text-xs">
         Github

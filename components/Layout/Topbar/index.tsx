@@ -61,10 +61,9 @@ function index() {
         >
           {/* Dark theme button */}
           <button aria-hidden="true" className="relative focus:outline-none">
-            <div className="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"></div>
+            <div className="w-6 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"></div>
             <div className="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm">
               <MoonIcon className="w-4 h-4" />
-              <StarIcon className="w-4 h-4" />
             </div>
           </button>
           {/* Notification button */}
@@ -143,6 +142,7 @@ function index() {
                 aria-hidden="true"
                 className="relative focus:outline-none"
               >
+                {/* TODO: Theme setter */}
                 <div
                   className={`inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm ${
                     true
