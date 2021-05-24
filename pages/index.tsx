@@ -1,4 +1,6 @@
 import Layout from "../components/Layout";
+import CardWithHeadingAndBadge from "../components/UI/CardWithHeadingAndBadge";
+import CardWithHeading from "../components/UI/CardWithHeading";
 
 export default function Home() {
   return (
@@ -135,92 +137,32 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
-          <div
-            className="col-span-2 bg-white rounded-md dark:bg-darker"
-            x-data="{ isOn: false }"
-          >
-            <div className="flex items-center justify-between p-4 border-b dark:border-primary">
-              <h4 className="text-lg font-semibold text-gray-500 dark:text-light">
-                Bar Chart
-              </h4>
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-500 dark:text-light">
-                  Last year
-                </span>
-                <button className="relative focus:outline-none">
-                  <div className="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"></div>
-                  <div className="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 ease-in-out transform scale-110 rounded-full shadow-sm"></div>
-                </button>
-              </div>
-            </div>
-            <div className="relative p-4 h-72">
-              <canvas id="barChart"></canvas>
-            </div>
+        <div className="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-4">
+          <div className="col-span-2">
+            <CardWithHeadingAndBadge
+              title="Bar Chart"
+              badgeLabel="Last Year"
+              badgeInnerText="123"
+            >
+              <span>Test</span>
+            </CardWithHeadingAndBadge>
           </div>
-
-          <div
-            className="bg-white rounded-md dark:bg-darker"
-            x-data="{ isOn: false }"
-          >
-            <div className="flex items-center justify-between p-4 border-b dark:border-primary">
-              <h4 className="text-lg font-semibold text-gray-500 dark:text-light">
-                Doughnut Chart
-              </h4>
-              <div className="flex items-center">
-                <button className="relative focus:outline-none">
-                  <div className="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"></div>
-                  <div className="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 ease-in-out transform scale-110 rounded-full shadow-sm"></div>
-                </button>
-              </div>
-            </div>
-            <div className="relative p-4 h-72">
-              <canvas id="doughnutChart"></canvas>
-            </div>
+          <div className="col-span-2">
+            <CardWithHeadingAndBadge
+              title="Bar Chart"
+              badgeLabel="Last Year"
+              badgeInnerText="123"
+            >
+              <span>Test</span>
+            </CardWithHeadingAndBadge>
           </div>
         </div>
 
         <div className="grid grid-cols-1 p-4 space-y-8 lg:gap-8 lg:space-y-0 lg:grid-cols-3">
-          <div className="col-span-1 bg-white rounded-md dark:bg-darker">
-            <div className="p-4 border-b dark:border-primary">
-              <h4 className="text-lg font-semibold text-gray-500 dark:text-light">
-                Active users right now
-              </h4>
-            </div>
-            <p className="p-4">
-              <span
-                className="text-2xl font-medium text-gray-500 dark:text-light"
-                id="usersCount"
-              >
-                0
-              </span>
-              <span className="text-sm font-medium text-gray-500 dark:text-primary">
-                Users
-              </span>
-            </p>
-            <div className="relative p-4">
-              <canvas id="activeUsersChart"></canvas>
-            </div>
-          </div>
-
-          <div
-            className="col-span-2 bg-white rounded-md dark:bg-darker"
-            x-data="{ isOn: false }"
-          >
-            <div className="flex items-center justify-between p-4 border-b dark:border-primary">
-              <h4 className="text-lg font-semibold text-gray-500 dark:text-light">
-                Line Chart
-              </h4>
-              <div className="flex items-center">
-                <button className="relative focus:outline-none">
-                  <div className="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-darker"></div>
-                  <div className="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 ease-in-out transform scale-110 rounded-full shadow-sm"></div>
-                </button>
-              </div>
-            </div>
-            <div className="relative p-4 h-72">
-              <canvas id="lineChart"></canvas>
-            </div>
+          <div className="col-span-1 h-96">
+            <CardWithHeading title="Active Users Right Now">
+              <span>Test</span>
+            </CardWithHeading>
           </div>
         </div>
       </div>
