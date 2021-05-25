@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../../app/store";
+import { toggle } from "../../../features/UI/menuToggleSlice";
 import Modal from "../Modal";
 import TableRow from "./TableRow";
 import Backdrop from "../../Layout/Drawer/Backdrop";
 import NewCoinModal from "./NewCoinModal";
+import SettingsModal from "./SettingsModal";
 import { ChevronDownIcon, PlusIcon, CogIcon } from "@heroicons/react/outline";
 
 const CoinData = [
@@ -17,12 +20,8 @@ const CoinData = [
 ];
 
 function index() {
-  const [menuOpen, setMenuOpen] = useState({
-    "market-1": false,
-    "market-2": false,
-    "add-coin": false,
-    settings: false,
-  });
+  const menuOpen = useSelector<RootState>((state) => state.menuToggle);
+  const dispatch = useAppDispatch();
   return (
     <div className="h-full bg-white rounded-md dark:bg-darker">
       <table className="min-w-full">
@@ -41,16 +40,10 @@ function index() {
               <div
                 className="flex flex-row h-full w-full"
                 onClick={() => {
-                  setMenuOpen({
-                    ...menuOpen,
-                    "market-1": !menuOpen["market-1"],
-                  });
+                  dispatch(toggle({ menu: "market-1" }));
                 }}
                 onMouseOver={() => {
-                  setMenuOpen({
-                    ...menuOpen,
-                    "market-1": !menuOpen["market-1"],
-                  });
+                  dispatch(toggle({ menu: "market-1" }));
                 }}
               >
                 <span className="col">{CoinData[0].prices[0].market}</span>
@@ -62,10 +55,7 @@ function index() {
                 hidden={!menuOpen["market-1"]}
                 className="absolute right-0 w-full top-10 border"
                 onMouseLeave={() => {
-                  setMenuOpen({
-                    ...menuOpen,
-                    "market-1": !menuOpen["market-1"],
-                  });
+                  dispatch(toggle({ menu: "market-1" }));
                 }}
               >
                 <ul className="flex flex-col list-none text-light">
@@ -85,16 +75,10 @@ function index() {
               <div
                 className="flex flex-row"
                 onClick={() => {
-                  setMenuOpen({
-                    ...menuOpen,
-                    "market-2": !menuOpen["market-2"],
-                  });
+                  dispatch(toggle({ menu: "market-2" }));
                 }}
                 onMouseOver={() => {
-                  setMenuOpen({
-                    ...menuOpen,
-                    "market-2": !menuOpen["market-2"],
-                  });
+                  dispatch(toggle({ menu: "market-2" }));
                 }}
               >
                 <span className="col">{CoinData[0].prices[1].market}</span>
@@ -106,10 +90,7 @@ function index() {
                 hidden={!menuOpen["market-2"]}
                 className="absolute right-0 w-full top-10 border"
                 onMouseLeave={() => {
-                  setMenuOpen({
-                    ...menuOpen,
-                    "market-2": !menuOpen["market-2"],
-                  });
+                  dispatch(toggle({ menu: "market-2" }));
                 }}
               >
                 <ul className="flex flex-col list-none text-light">
@@ -146,10 +127,7 @@ function index() {
         <button
           className="transition duration-500 ease-in-out bg-primary dark:bg-primary-light dark:hover:bg-primary-lighter text-white dark:text-black hover:bg-primary-darker h-10 w-40 rounded-full flex flex-row justify-center items-center flex-nowrap"
           onClick={() => {
-            setMenuOpen({
-              ...menuOpen,
-              "add-coin": !menuOpen["add-coin"],
-            });
+            dispatch(toggle({ menu: "add-coin" }));
           }}
         >
           <span className="col mr-2">
@@ -160,10 +138,7 @@ function index() {
         <button
           className="transition duration-500 ease-in-out ml-2 bg-primary dark:bg-primary-light dark:hover:bg-primary-lighter text-white dark:text-black hover:bg-primary-darker h-10 w-10 rounded-full flex flex-col justify-center items-center"
           onClick={() => {
-            setMenuOpen({
-              ...menuOpen,
-              settings: !menuOpen["settings"],
-            });
+            dispatch(toggle({ menu: "settings" }));
           }}
         >
           <span className="col">
@@ -176,17 +151,11 @@ function index() {
         <Modal
           title="Add New Coin"
           name="add-coin"
-          toggle={{ state: menuOpen, action: setMenuOpen }}
           children={<NewCoinModal />}
         />
       )}
       {menuOpen["settings"] && (
-        <Modal
-          title="Settings"
-          name="settings"
-          toggle={{ state: menuOpen, action: setMenuOpen }}
-          children={<NewCoinModal />}
-        />
+        <Modal title="Settings" name="settings" children={<SettingsModal />} />
       )}
     </div>
   );

@@ -1,24 +1,19 @@
-import { useState } from "react";
-import { useAppDispatch } from "../../../app/store";
+import { useSelector } from "react-redux";
+import { useAppDispatch, RootState } from "../../../app/store";
+import { toggle } from "../../../features/UI/menuToggleSlice";
 import { changeTheme } from "../../../features/UI/themeSlice";
 import SmallMenu from "./SmallMenu";
 import {
   DotsVerticalIcon,
   MenuIcon,
   MoonIcon,
-  StarIcon,
   BellIcon,
   SearchIcon,
   CogIcon,
 } from "@heroicons/react/outline";
 
 function index() {
-  const [openMenu, setOpenMenu] = useState({
-    "large-topbar": false,
-    "small-topbar": false,
-    topbar: false,
-    menu: false,
-  });
+  const openMenu = useSelector<RootState>((state) => state.menuToggle);
   const dispatch = useAppDispatch();
   return (
     <header className="relative bg-white dark:bg-darker">
@@ -26,10 +21,7 @@ function index() {
         <button
           className="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring"
           onClick={() => {
-            setOpenMenu({
-              ...openMenu,
-              menu: !openMenu["menu"],
-            });
+            dispatch(toggle({ menu: "menu" }));
           }}
         >
           <span className="sr-only">Open Main Menu</span>
@@ -46,10 +38,7 @@ function index() {
         <button
           className="p-1 transition-colors duration-200 rounded-md text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark md:hidden focus:outline-none focus:ring"
           onClick={() => {
-            setOpenMenu({
-              ...openMenu,
-              topbar: !openMenu["topbar"],
-            });
+            dispatch(toggle({ menu: "topbar" }));
           }}
         >
           <span className="sr-only">Open Sub Menu</span>
@@ -95,10 +84,7 @@ function index() {
               aria-haspopup="true"
               className="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
               onClick={() => {
-                setOpenMenu({
-                  ...openMenu,
-                  "large-topbar": !openMenu["large-topbar"],
-                });
+                dispatch(toggle({ menu: "large-topbar" }));
               }}
             >
               <span className="sr-only">User menu</span>
@@ -180,10 +166,7 @@ function index() {
                   aria-haspopup="true"
                   className="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
                   onClick={() => {
-                    setOpenMenu({
-                      ...openMenu,
-                      "small-topbar": !openMenu["small-topbar"],
-                    });
+                    dispatch(toggle({ menu: "small-topbar" }));
                   }}
                 >
                   <span className="sr-only">User Menu</span>
@@ -228,7 +211,7 @@ function index() {
         )}
       </div>
       {/* Mobile main menu */}
-      <SmallMenu {...{ menu: !openMenu.menu }} />
+      <SmallMenu {...{ menu: !openMenu["menu"] }} />
     </header>
   );
 }

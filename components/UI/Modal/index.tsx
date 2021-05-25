@@ -1,28 +1,16 @@
-import { Dispatch, SetStateAction } from "react";
+import { useSelector } from "react-redux";
+import { useAppDispatch, RootState } from "../../../app/store";
+import { toggle } from "../../../features/UI/menuToggleSlice";
 
 interface IToggle {
   name: string;
   title: string;
-  toggle: {
-    state: {
-      "market-1": boolean;
-      "market-2": boolean;
-      "add-coin": boolean;
-      settings: boolean;
-    };
-    action: Dispatch<
-      SetStateAction<{
-        "market-1": boolean;
-        "market-2": boolean;
-        "add-coin": boolean;
-        settings: boolean;
-      }>
-    >;
-  };
   children: JSX.Element;
 }
 
-function index({ name, title, toggle, children }: IToggle) {
+function index({ name, title, children }: IToggle) {
+  const menuOpen = useSelector<RootState>((state) => state.menuToggle);
+  const dispatch = useAppDispatch();
   return (
     <div
       className="h-full w-full transition duration-500 ease-in-out fixed inset-0 z-10 flex flex-row justify-center items-center"
@@ -40,16 +28,10 @@ function index({ name, title, toggle, children }: IToggle) {
             // TODO: Need proper way to handle
             onClick={() => {
               if (name == "add-coin") {
-                toggle.action({
-                  ...toggle.state,
-                  "add-coin": !toggle.state["add-coin"],
-                });
+                dispatch(toggle({ menu: "add-coin" }));
               }
               if (name == "settings") {
-                toggle.action({
-                  ...toggle.state,
-                  settings: !toggle.state["settings"],
-                });
+                dispatch(toggle({ menu: "settings" }));
               }
             }}
           >
