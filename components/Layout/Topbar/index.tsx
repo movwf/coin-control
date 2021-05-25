@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAppDispatch } from "../../../app/store";
+import { changeTheme } from "../../../features/UI/themeSlice";
 import SmallMenu from "./SmallMenu";
 import {
   DotsVerticalIcon,
@@ -17,6 +19,7 @@ function index() {
     topbar: false,
     menu: false,
   });
+  const dispatch = useAppDispatch();
   return (
     <header className="relative bg-white dark:bg-darker">
       <div className="flex items-center justify-between p-2 border-b dark:border-primary-darker">
@@ -60,7 +63,13 @@ function index() {
           className="hidden space-x-2 md:flex md:items-center"
         >
           {/* Dark theme button */}
-          <button aria-hidden="true" className="relative focus:outline-none">
+          <button
+            aria-hidden="true"
+            className="relative focus:outline-none"
+            onClick={() => {
+              dispatch(changeTheme());
+            }}
+          >
             <div className="w-6 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"></div>
             <div className="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm">
               <MoonIcon className="w-4 h-4" />

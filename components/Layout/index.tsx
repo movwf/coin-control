@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 import Topbar from "./Topbar";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
@@ -5,8 +7,7 @@ import Drawer from "./Drawer";
 import SettingsPanel from "../SettingsPanel";
 
 function index({ children }) {
-  // Change with theme dispatch
-  const isDark = true;
+  const isDark = useSelector<RootState>((state) => state.theme.value);
   return (
     <div
       className={`flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light ${
