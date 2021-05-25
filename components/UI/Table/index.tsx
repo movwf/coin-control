@@ -21,6 +21,7 @@ const CoinData = [
 
 function index() {
   const menuOpen = useSelector<RootState>((state) => state.menuToggle);
+  const coinData = useSelector<RootState>((state) => state.coin);
   const dispatch = useAppDispatch();
   return (
     <div className="h-full bg-white rounded-md dark:bg-darker">
@@ -118,7 +119,7 @@ function index() {
           </tr>
         </thead>
         <tbody className="text-primary-dark dark:text-primary-light ">
-          {CoinData?.map((coin, idx) => (
+          {coinData["coins"].map((coin, idx) => (
             <TableRow key={idx} {...coin} />
           ))}
         </tbody>
