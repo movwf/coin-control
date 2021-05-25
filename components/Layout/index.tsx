@@ -7,11 +7,11 @@ import Drawer from "./Drawer";
 import SettingsPanel from "../SettingsPanel";
 
 function index({ children }) {
-  const isDark = useSelector<RootState>((state) => state.theme.value);
+  const theme = useSelector<RootState>((state) => state.theme.value);
   return (
     <div
       className={`flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light ${
-        isDark ? "dark" : ""
+        theme == "dark" ? "dark" : ""
       }`}
     >
       <Sidebar />

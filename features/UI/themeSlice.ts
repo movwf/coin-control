@@ -7,7 +7,7 @@ export const themeSlice = createSlice({
   },
   reducers: {
     changeTheme: (state) => {
-      state.value = state.value == "dark" ? "":"";
+      state.value = state.value == "" ? "dark" : "";
     },
   },
 });

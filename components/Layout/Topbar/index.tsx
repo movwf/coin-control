@@ -64,16 +64,14 @@ function index() {
         >
           {/* Dark theme button */}
           <button
+            className="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker"
             aria-hidden="true"
-            className="relative focus:outline-none"
             onClick={() => {
               dispatch(changeTheme());
             }}
           >
-            <div className="w-6 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter"></div>
-            <div className="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm">
-              <MoonIcon className="w-4 h-4" />
-            </div>
+            <span className="sr-only">Open Notification panel</span>
+            <MoonIcon className="w-7 h-7" />
           </button>
           {/* Notification button */}
           <button className="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
@@ -152,18 +150,13 @@ function index() {
               {/* Toggle dark theme button */}
               <button
                 aria-hidden="true"
-                className="relative focus:outline-none"
+                className="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker"
+                onClick={() => {
+                  dispatch(changeTheme());
+                }}
               >
-                {/* TODO: Theme setter */}
-                <div
-                  className={`inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm ${
-                    true
-                      ? "translate-x-0 -translate-y-px  bg-white text-primary-dark"
-                      : "translate-x-6 text-primary-100 bg-primary-darker"
-                  }`}
-                >
-                  <MoonIcon className="w-7 h-7" />
-                </div>
+                <span className="sr-only">Open Notifications Panel</span>
+                <MoonIcon className="w-7 h-7" />
               </button>
               {/* Notification button */}
               <button className="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
