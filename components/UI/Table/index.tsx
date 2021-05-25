@@ -19,7 +19,7 @@ function index() {
   const [menuOpen, setMenuOpen] = useState({
     "market-1": false,
     "market-2": false,
-    "add-coin": true,
+    "add-coin": false,
   });
   return (
     <div className="h-full bg-white rounded-md dark:bg-darker">
@@ -137,8 +137,8 @@ function index() {
           </tr>
         </thead>
         <tbody className="text-primary-dark dark:text-primary-light ">
-          {CoinData?.map((coin) => (
-            <TableRow {...coin} />
+          {CoinData?.map((coin, idx) => (
+            <TableRow key={idx} {...coin} />
           ))}
         </tbody>
       </table>
