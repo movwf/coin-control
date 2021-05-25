@@ -24,15 +24,15 @@ function index({ toggle }: IToggle) {
       aria-hidden="true"
     >
       <div className="w-1/2 h-2/5 rounded-2xl bg-gray-900 border-4 border-primary-darker flex flex-col">
-        <div className="row w-full h-10 text-primary-dark dark:text-light bg-primary-darker rounded-t-lg border-b-2 border-primary-darker flex flex-col justify-center">
+        <div className="row w-full h-10 text-light bg-primary-darker rounded-t-lg border-b-2 border-primary-darker flex flex-col justify-center">
           <span className="ml-4 row text-xl">Settings</span>
         </div>
-        <div className="row h-full w-full text-primary-dark dark:text-light flex flex-col">
+        <div className="row h-full w-full text-light flex flex-col">
           {/* children */}
           <span className="row mt-4 ml-4 font-extrabold text-2xl">
             Interval
           </span>
-          <span className="row text-gray-500 italic text-sm ml-4">
+          <span className="row text-gray-300 dark:text-gray-500 italic text-sm ml-4">
             Set interval for data retrieving.
           </span>
           <select

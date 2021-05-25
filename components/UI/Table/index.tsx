@@ -32,7 +32,10 @@ function index() {
             >
               COIN
             </th>
-            <th className="relative px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider hover:bg-primary-dark hover:dark:bg-primary-light cursor-pointer">
+            <th
+              className="relative px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider hover:text-light  hover:bg-primary-dark 
+            dark:hover:bg-primary-light cursor-pointer"
+            >
               <div
                 className="flex flex-row h-full w-full"
                 onClick={() => {
@@ -63,13 +66,8 @@ function index() {
                   });
                 }}
               >
-                <ul className="flex flex-col list-none">
-                  <li
-                    className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light"
-                    onClick={() => {
-                      alert("1");
-                    }}
-                  >
+                <ul className="flex flex-col list-none text-light">
+                  <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
                     Paribu
                   </li>
                   <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
@@ -81,7 +79,7 @@ function index() {
                 </ul>
               </div>
             </th>
-            <th className="relative px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider hover:bg-primary-dark hover:dark:bg-primary-light cursor-pointer">
+            <th className="relative px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider hover:text-light hover:bg-primary-dark dark:hover:bg-primary-light cursor-pointer">
               <div
                 className="flex flex-row"
                 onClick={() => {
@@ -112,7 +110,7 @@ function index() {
                   });
                 }}
               >
-                <ul className="flex flex-col list-none">
+                <ul className="flex flex-col list-none text-light">
                   <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
                     Paribu
                   </li>
@@ -143,8 +141,8 @@ function index() {
         </tbody>
       </table>
       <div className="m-4 h-15 w-full flex flex-row justify-center items-center">
-        <div
-          className="transition duration-500 ease-in-out bg-primary-dark hover:bg-primary-darker h-10 w-40 text-primary-darker dark:text-light rounded-full flex flex-row justify-center items-center flex-nowrap"
+        <button
+          className="transition duration-500 ease-in-out bg-primary dark:bg-primary-light dark:hover:bg-primary-lighter text-white dark:text-black hover:bg-primary-darker h-10 w-40 rounded-full flex flex-row justify-center items-center flex-nowrap"
           onClick={() => {
             setMenuOpen({
               ...menuOpen,
@@ -156,7 +154,7 @@ function index() {
             <PlusIcon className="w-6 h-6" />
           </span>
           <span className="col"> Add New Coin</span>
-        </div>
+        </button>
       </div>
       <Backdrop {...{ toggle: menuOpen["add-coin"] }} />
       {menuOpen["add-coin"] && (
