@@ -11,6 +11,7 @@ interface ICoin {
       currentPrice: number;
     }[];
   }[];
+  interval: number;
 }
 
 const initialState: ICoin = {
@@ -26,6 +27,7 @@ const initialState: ICoin = {
       }),
     };
   }),
+  interval: 1000,
 };
 
 export const coinSlice = createSlice({
@@ -39,18 +41,21 @@ export const coinSlice = createSlice({
         })[0]
         .prices.filter((price) => {
           return price.market == action.payload.market;
-        })[0].currentPrice = 1;
+        })[0].currentPrice = action.payload.currentPrice;
     },
     addCoin: (state, action) => {
       state.coins.push({
-        name: "test",
-        code: "test",
-        prices: [{ market: "test", currentPrice: 0 }],
+        name: action.payload.name,
+        code: action.payload.code,
+        prices: [{ market: action.payload.market, currentPrice: 0 }],
       });
+    },
+    changeInterval: (state, action) => {
+      state.interval = action.payload.interval;
     },
   },
 });
 
-export const { updateCoin } = coinSlice.actions;
+export const { updateCoin, addCoin, changeInterval } = coinSlice.actions;
 
 export default coinSlice.reducer;
