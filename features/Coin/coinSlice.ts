@@ -13,6 +13,9 @@ interface ICoin {
     }[];
   }[];
   interval: number;
+  activeMarkets: {
+    [market: string]: string;
+  };
 }
 
 const initialState: ICoin = {
@@ -29,6 +32,10 @@ const initialState: ICoin = {
     };
   }),
   interval: 1000,
+  activeMarkets: {
+    "market-1": "paribu",
+    "market-2": "binance",
+  },
 };
 
 export const coinSlice = createSlice({
@@ -43,6 +50,11 @@ export const coinSlice = createSlice({
         .prices.filter((price) => {
           return price.market == action.payload.market;
         })[0].currentPrice = action.payload.price;
+    },
+    updateMarket: (state, action) => {
+      state.activeMarkets[
+        action.payload.position == 1 ? "market-1" : "market-2"
+      ] = action.payload.market;
     },
     addCoin: (state, action) => {
       state.coins.push({
@@ -60,6 +72,7 @@ export const coinSlice = createSlice({
   },
 });
 
-export const { updateCoin, addCoin, changeInterval } = coinSlice.actions;
+export const { updateCoin, addCoin, changeInterval, updateMarket } =
+  coinSlice.actions;
 
 export default coinSlice.reducer;

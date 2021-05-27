@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../app/store";
 import { toggle } from "../../../features/UI/menuToggleSlice";
-import { updateCoin } from "../../../features/Coin/coinSlice";
+import { updateCoin, updateMarket } from "../../../features/Coin/coinSlice";
 import { getStorage } from "../../../services/localStorage";
 import { mergeCoinDatas } from "../../../services/coinService";
 import { setCoinList } from "../../../app/coins";
@@ -72,7 +72,9 @@ function index() {
                   dispatch(toggle({ menu: "market-1" }));
                 }}
               >
-                <span className="col">{Markets[0].name}</span>
+                <span className="col">
+                  {coinData["activeMarkets"]["market-1"]}
+                </span>
                 <span className="col ml-auto">
                   <ChevronDownIcon className="w-4 h-4" />
                 </span>
@@ -85,15 +87,21 @@ function index() {
                 }}
               >
                 <ul className="flex flex-col list-none text-light">
-                  <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
-                    Paribu
-                  </li>
-                  <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
-                    Binance
-                  </li>
-                  <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
-                    Bitvavo
-                  </li>
+                  {Markets.map((market, idx) => {
+                    return (
+                      <li
+                        key={idx}
+                        className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light"
+                        onClick={() =>
+                          dispatch(
+                            updateMarket({ market: market.name, position: 1 })
+                          )
+                        }
+                      >
+                        {market.name}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </th>
@@ -107,7 +115,9 @@ function index() {
                   dispatch(toggle({ menu: "market-2" }));
                 }}
               >
-                <span className="col">{Markets[1].name}</span>
+                <span className="col">
+                  {coinData["activeMarkets"]["market-2"]}
+                </span>
                 <span className="col ml-auto">
                   <ChevronDownIcon className="w-4 h-4" />
                 </span>
@@ -120,15 +130,21 @@ function index() {
                 }}
               >
                 <ul className="flex flex-col list-none text-light">
-                  <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
-                    Paribu
-                  </li>
-                  <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
-                    Binance
-                  </li>
-                  <li className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light">
-                    Bitvavo
-                  </li>
+                  {Markets.map((market, idx) => {
+                    return (
+                      <li
+                        key={idx}
+                        className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light"
+                        onClick={() =>
+                          dispatch(
+                            updateMarket({ market: market.name, position: 2 })
+                          )
+                        }
+                      >
+                        {market.name}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </th>
