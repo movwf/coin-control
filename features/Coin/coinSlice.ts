@@ -43,6 +43,7 @@ export const coinSlice = createSlice({
   initialState,
   reducers: {
     updateCoin: (state, action) => {
+      // Select and change values of coin
       state.coins
         .filter((coin) => {
           return coin.code == action.payload.coin;
@@ -52,9 +53,19 @@ export const coinSlice = createSlice({
         })[0].currentPrice = action.payload.price;
     },
     updateMarket: (state, action) => {
+      // Update active markets state
       state.activeMarkets[
         action.payload.position == 1 ? "market-1" : "market-2"
       ] = action.payload.market;
+      // Update state data
+      state.coins.forEach((coin) => {
+        if (action.payload.position == 1) {
+          coin.prices[0].market = action.payload.market;
+        }
+        if (action.payload.position == 2) {
+          coin.prices[1].market = action.payload.market;
+        }
+      });
     },
     addCoin: (state, action) => {
       state.coins.push({
