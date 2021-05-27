@@ -2,15 +2,17 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../app/store";
 import { toggle } from "../../../features/UI/menuToggleSlice";
+import { updateCoin } from "../../../features/Coin/coinSlice";
+import { getStorage } from "../../../services/localStorage";
+import { mergeCoinDatas } from "../../../services/coinService";
+import { setCoinList } from "../../../app/coins";
+import { Markets } from "../../../app/markets";
 import Modal from "../Modal";
 import TableRow from "./TableRow";
 import Backdrop from "../../Layout/Drawer/Backdrop";
 import NewCoinModal from "./NewCoinModal";
 import SettingsModal from "./SettingsModal";
 import { ChevronDownIcon, PlusIcon, CogIcon } from "@heroicons/react/outline";
-import { getStorage } from "../../../services/localStorage";
-import { setCoinList } from "../../../app/coins";
-import { Markets } from "../../../app/markets";
 
 function index() {
   const menuOpen = useSelector<RootState>((state) => state.menuToggle);
@@ -22,6 +24,29 @@ function index() {
     if (localCoinData !== null) {
       setCoinList(localCoinData);
     }
+    // Start service here
+    // const service = setInterval(() => {
+    //   mergeCoinDatas(
+    //     coinData["coins"].map((coin) => {
+    //       return coin.code;
+    //     })
+    //   ).then((res) => {
+    //     console.log(res);
+    //     res.forEach((r) => {
+    //       dispatch(
+    //         updateCoin({
+    //           coin: r.coin,
+    //           market: r.market,
+    //           price: parseInt(r.price),
+    //         })
+    //       );
+    //     });
+    //   });
+    // }, coinData["interval"]);
+
+    // setTimeout(() => {
+    //   clearInterval(service);
+    // }, 20000);
   }, []);
   return (
     <div className="h-full bg-white rounded-md dark:bg-darker">
