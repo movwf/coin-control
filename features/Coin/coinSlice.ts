@@ -37,17 +37,19 @@ export const coinSlice = createSlice({
     updateCoin: (state, action) => {
       state.coins
         .filter((coin) => {
-          return coin.name == action.payload.coin;
+          return coin.code == action.payload.coin;
         })[0]
         .prices.filter((price) => {
           return price.market == action.payload.market;
-        })[0].currentPrice = action.payload.currentPrice;
+        })[0].currentPrice = action.payload.price;
     },
     addCoin: (state, action) => {
       state.coins.push({
         name: action.payload.name,
         code: action.payload.code,
-        prices: [{ market: action.payload.market, currentPrice: 0 }],
+        prices: Markets.map((market) => {
+          return { market: market.name, currentPrice: 0 };
+        }),
       });
     },
     changeInterval: (state, action) => {
