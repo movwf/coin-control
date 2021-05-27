@@ -1,4 +1,11 @@
-export const Markets = [
+interface IMarket {
+  name: string;
+  coins: {
+    [key: string]: any;
+  };
+}
+
+export const Markets: IMarket[] = [
   {
     name: "paribu",
     coins: {

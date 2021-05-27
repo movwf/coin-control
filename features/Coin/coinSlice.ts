@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Coins } from "../../app/coins";
 import { Markets } from "../../app/markets";
+import { saveStorage } from "../../services/localStorage";
 
 interface ICoin {
   coins: {
@@ -51,6 +52,7 @@ export const coinSlice = createSlice({
           return { market: market.name, currentPrice: 0 };
         }),
       });
+      saveStorage("coin-data", action.payload.code);
     },
     changeInterval: (state, action) => {
       state.interval = action.payload.interval;

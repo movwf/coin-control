@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../app/store";
 import { toggle } from "../../../features/UI/menuToggleSlice";
@@ -7,22 +8,21 @@ import Backdrop from "../../Layout/Drawer/Backdrop";
 import NewCoinModal from "./NewCoinModal";
 import SettingsModal from "./SettingsModal";
 import { ChevronDownIcon, PlusIcon, CogIcon } from "@heroicons/react/outline";
-
-const CoinData = [
-  {
-    name: "BTC",
-    code: "btc", // btc-tl Paribu btctry Binance
-    prices: [
-      { market: "Paribu", currentPrice: 450000 },
-      { market: "Binance", currentPrice: 435000 },
-    ],
-  },
-];
+import { getStorage } from "../../../services/localStorage";
+import { setCoinList } from "../../../app/coins";
+import { Markets } from "../../../app/markets";
 
 function index() {
   const menuOpen = useSelector<RootState>((state) => state.menuToggle);
   const coinData = useSelector<RootState>((state) => state.coin);
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    // Import data from local storage
+    let localCoinData = getStorage("coin-data");
+    if (localCoinData !== null) {
+      setCoinList(localCoinData);
+    }
+  }, []);
   return (
     <div className="h-full bg-white rounded-md dark:bg-darker">
       <table className="min-w-full">
@@ -47,7 +47,7 @@ function index() {
                   dispatch(toggle({ menu: "market-1" }));
                 }}
               >
-                <span className="col">{CoinData[0].prices[0].market}</span>
+                <span className="col">{Markets[0].name}</span>
                 <span className="col ml-auto">
                   <ChevronDownIcon className="w-4 h-4" />
                 </span>
@@ -82,7 +82,7 @@ function index() {
                   dispatch(toggle({ menu: "market-2" }));
                 }}
               >
-                <span className="col">{CoinData[0].prices[1].market}</span>
+                <span className="col">{Markets[1].name}</span>
                 <span className="col ml-auto">
                   <ChevronDownIcon className="w-4 h-4" />
                 </span>
@@ -149,14 +149,10 @@ function index() {
       </div>
       <Backdrop {...{ toggle: menuOpen["add-coin"] || menuOpen["settings"] }} />
       {menuOpen["add-coin"] && (
-        <Modal
-          title="Add New Coin"
-          name="add-coin"
-          children={<NewCoinModal />}
-        />
+        <Modal title="Add New Coin" children={<NewCoinModal />} />
       )}
       {menuOpen["settings"] && (
-        <Modal title="Settings" name="settings" children={<SettingsModal />} />
+        <Modal title="Settings" children={<SettingsModal />} />
       )}
     </div>
   );
