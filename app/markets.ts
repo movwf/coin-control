@@ -22,4 +22,12 @@ export const Markets: IMarket[] = [
       xrp: "XRPTRY",
     },
   },
+  {
+    name: "bitvavo",
+    coins: {
+      btc: "BTC-EUR",
+      eth: "ETH-EUR",
+      xrp: "XRP-EUR",
+    },
+  },
 ];

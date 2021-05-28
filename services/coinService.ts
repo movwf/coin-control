@@ -1,5 +1,6 @@
 import fetchParibuData from "./paribuService";
 import fetchBinanceData from "./binanceService";
+import fetchBitvavoData from "./bitvavoService";
 
 export const mergeCoinDatas = async (
   coinList: string[],
@@ -16,6 +17,9 @@ export const mergeCoinDatas = async (
     case "binance":
       market1Data = fetchBinanceData(coinList);
       break;
+    case "bitvavo":
+      market1Data = fetchBitvavoData(coinList);
+      break;
     default:
       break;
   }
@@ -26,6 +30,9 @@ export const mergeCoinDatas = async (
       break;
     case "binance":
       market2Data = fetchBinanceData(coinList);
+      break;
+    case "bitvavo":
+      market2Data = fetchBitvavoData(coinList);
       break;
     default:
       break;
