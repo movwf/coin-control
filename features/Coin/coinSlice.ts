@@ -54,17 +54,25 @@ export const coinSlice = createSlice({
     },
     updateMarket: (state, action) => {
       // Update active markets state
-      state.activeMarkets[
-        action.payload.position == 1 ? "market-1" : "market-2"
-      ] = action.payload.market;
+      if (action.payload.position == 1) {
+        let temp = state.activeMarkets["market-1"];
+        state.activeMarkets["market-1"] = action.payload.market;
+        if (state.activeMarkets["market-2"] == action.payload.market) {
+          state.activeMarkets["market-2"] = temp;
+        }
+      }
+      if (action.payload.position == 2) {
+        let temp = state.activeMarkets["market-2"];
+        state.activeMarkets["market-2"] = action.payload.market;
+        if (state.activeMarkets["market-1"] == action.payload.market) {
+          state.activeMarkets["market-1"] = temp;
+        }
+      }
+
       // Update state data
       state.coins.forEach((coin) => {
-        if (action.payload.position == 1) {
-          coin.prices[0].market = action.payload.market;
-        }
-        if (action.payload.position == 2) {
-          coin.prices[1].market = action.payload.market;
-        }
+        coin.prices[0].market = state.activeMarkets["market-1"];
+        coin.prices[1].market = state.activeMarkets["market-2"];
       });
     },
     addCoin: (state, action) => {

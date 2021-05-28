@@ -15,7 +15,11 @@ const fetchParibuData = async (coinList: string[]) => {
   let requestList = [];
   // Create axios request for each coin
   reqQue.forEach((coin) => {
-    requestList.push(axios.get(process.env.NEXT_PUBLIC_PARIBU_URL + coin.code));
+    requestList.push(
+      axios.get(
+        process.env.NEXT_PUBLIC_PARIBU_URL + coin.code + "?interval=1000"
+      )
+    );
   });
 
   let results = [];

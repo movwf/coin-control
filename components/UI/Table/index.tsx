@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../app/store";
 import { toggle } from "../../../features/UI/menuToggleSlice";
@@ -14,40 +14,53 @@ import NewCoinModal from "./NewCoinModal";
 import SettingsModal from "./SettingsModal";
 import { ChevronDownIcon, PlusIcon, CogIcon } from "@heroicons/react/outline";
 
+function useInterval(callback, delay) {
+  const savedCallback = useRef<() => void>();
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
 function index() {
   const menuOpen = useSelector<RootState>((state) => state.menuToggle);
   const coinData = useSelector<RootState>((state) => state.coin);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    // Import data from local storage
-    let localCoinData = getStorage("coin-data");
-    if (localCoinData !== null) {
-      setCoinList(localCoinData);
-    }
-    // Start service here
-    // const service = setInterval(() => {
-    //   mergeCoinDatas(
-    //     coinData["coins"].map((coin) => {
-    //       return coin.code;
-    //     })
-    //   ).then((res) => {
-    //     console.log(res);
-    //     res.forEach((r) => {
-    //       dispatch(
-    //         updateCoin({
-    //           coin: r.coin,
-    //           market: r.market,
-    //           price: parseInt(r.price),
-    //         })
-    //       );
-    //     });
-    //   });
-    // }, coinData["interval"]);
 
-    // setTimeout(() => {
-    //   clearInterval(service);
-    // }, 20000);
-  }, []);
+  const [changed, setChanged] = useState(false);
+
+  useInterval(() => {
+    if (!changed) {
+      mergeCoinDatas(
+        coinData["coins"].map((coin) => {
+          return coin.code;
+        }),
+        coinData["activeMarkets"]["market-1"],
+        coinData["activeMarkets"]["market-2"]
+      ).then((res) => {
+        res.forEach((r) => {
+          dispatch(
+            updateCoin({
+              coin: r.coin,
+              market: r.market,
+              price: parseInt(r.price),
+            })
+          );
+        });
+      });
+    }
+  }, coinData["interval"]);
+
   return (
     <div className="h-full bg-white rounded-md dark:bg-darker">
       <table className="min-w-full">
@@ -62,6 +75,12 @@ function index() {
             <th
               className="relative px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider hover:text-light  hover:bg-primary-dark 
             dark:hover:bg-primary-light cursor-pointer"
+              onMouseOut={() => {
+                setChanged(!changed);
+              }}
+              onMouseOver={() => {
+                setChanged(!changed);
+              }}
             >
               <div
                 className="flex flex-row h-full w-full"
@@ -92,11 +111,11 @@ function index() {
                       <li
                         key={idx}
                         className="row w-full h-10 flex flex-row justify-center items-center bg-primary-darker hover:bg-primary-light"
-                        onClick={() =>
+                        onClick={() => {
                           dispatch(
                             updateMarket({ market: market.name, position: 1 })
-                          )
-                        }
+                          );
+                        }}
                       >
                         {market.name}
                       </li>
@@ -105,7 +124,15 @@ function index() {
                 </ul>
               </div>
             </th>
-            <th className="relative px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider hover:text-light hover:bg-primary-dark dark:hover:bg-primary-light cursor-pointer">
+            <th
+              className="relative px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider hover:text-light hover:bg-primary-dark dark:hover:bg-primary-light cursor-pointer"
+              onMouseOut={() => {
+                setChanged(!changed);
+              }}
+              onMouseOver={() => {
+                setChanged(!changed);
+              }}
+            >
               <div
                 className="flex flex-row"
                 onClick={() => {
